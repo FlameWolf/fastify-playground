@@ -1,6 +1,6 @@
 import fastify, { FastifyInstance } from "fastify";
 import formDataParser from "formzilla";
-import fastifyMultipart from "@fastify/multipart"; /* 14 Nov 2024: @fasttify/multipart still doesn't work with this schema */
+import fastifyMultipart from "@fastify/multipart"; /* 14 Nov 2024: @fastify/multipart still doesn't work with this schema */
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 
