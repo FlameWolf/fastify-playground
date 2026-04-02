@@ -21,6 +21,6 @@
 	"dependencies": {
 		"@fastify/multipart": "^9.4.0",
 		"fastify": "^5.8.4",
-		"formzilla": "^4.0.3"
+		"formzilla": "^4.0.5"
 	}
 }
