@@ -1,8 +1,10 @@
 import fastify, { FastifyInstance } from "fastify";
+import { fastifyStatic } from "@fastify/static"; /* 20 Mar 2026: Now this is required for `@fastify/swagger-ui` to work */
 import formDataParser from "formzilla";
 import fastifyMultipart from "@fastify/multipart"; /* 14 Nov 2024: @fastify/multipart still doesn't work with this schema */
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
+import path from "path";
 
 const postCreateSchema = {
 	consumes: ["multipart/form-data"],
@@ -28,6 +30,9 @@ const postCreateSchema = {
 	}
 };
 const server: FastifyInstance = fastify({ logger: true });
+server.register(fastifyStatic, {
+	root: path.join(__dirname, "public")
+});
 server.register(formDataParser);
 server.register(fastifySwagger, {
 	mode: "dynamic",
@@ -56,8 +61,8 @@ server.register(async (instance, options) => {
 					encoding: "7bit",
 					mimeType: "image/png",
 					path?: <string>,		// Only when using DiscStorage
-					stream?: <Readable>		// Only when using StreamStorage
-					data?: <Buffer>			// Only when using BufferStorage
+					stream?: <Readable>,	// Only when using StreamStorage
+					data?: <Buffer>,		// Only when using BufferStorage
 					error?: <Error>			// Only if any errors occur during processing
 				}
 			}
